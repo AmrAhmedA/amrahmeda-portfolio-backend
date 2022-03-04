@@ -11,12 +11,12 @@ const axiosConfig = {
   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
 };
 router.post("/", async (req, res) => {
-  if (_.isEmpty(req.body)) {
+  if (_.isEmpty(req.query)) {
     res.status(400).send("The request is empty");
     return;
   }
 
-  const { name, phone, email, message } = req.body;
+  const { name, phone, email, message } = req.query;
   let form = { name: name, phone: phone, email: email, message: message };
   try {
     var { data } = await axios.post(apiEndPoint, form);
