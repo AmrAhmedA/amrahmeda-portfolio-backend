@@ -12,18 +12,18 @@ const axiosConfig = {
   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
 };
 router.post("/", async (req, res) => {
-  if (_.isEmpty(req.body)) {
+  if (_.isEmpty(req.query)) {
     res.status(400).send("The request is empty, please add user response");
     return;
   }
   if (
-    req.body["userResponse"] == undefined ||
-    _.isEmpty(req.body["userResponse"])
+    req.query["userResponse"] == undefined ||
+    _.isEmpty(req.query["userResponse"])
   ) {
     res.status(400).send("User response not found");
     return;
   }
-  const { userResponse } = req.body;
+  const { userResponse } = req.query;
   let params = { secret: gCaptchaSecretKey, response: userResponse };
   try {
     var { data } = await axios({
@@ -34,6 +34,7 @@ router.post("/", async (req, res) => {
     });
   } catch (error) {
     console.log("Errors: ", error);
+    return;
   }
   res.status(200).send(data);
 });
