@@ -32,4 +32,4 @@ const ContactFormValidation = yup.object().shape({
     .required("Please enter your message"),
 });
 
-export default ContactFormValidation;
+module.exports = { ContactFormValidation };
