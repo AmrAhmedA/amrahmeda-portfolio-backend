@@ -14,7 +14,7 @@ const ContactFormValidation = yup.object().shape({
       "^[a-zA-Z_ \u0621-\u064A\u0660-\u0669]+$",
       "Please enter your name"
     )
-    .max(20, "Name must be less than 20 characters")
+    .max(30, "Name must be less than 30 characters")
     .required("Please enter your name"),
   phone: yup
     .string()
